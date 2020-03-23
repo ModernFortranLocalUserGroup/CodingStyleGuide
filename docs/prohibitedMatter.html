@@ -1,0 +1,229 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <title>4. 禁止事項 &#8212; Modern Fortran Coding Style Guide  ドキュメント</title>
+    <link rel="stylesheet" href="_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="prev" title="3. モダンな機能を生かして" href="modernFunction.html" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head><body>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="modernFunction.html" title="3. モダンな機能を生かして"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Modern Fortran Coding Style Guide  ドキュメント</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="id1">
+<h1>4. 禁止事項<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="id2">
+<h2>4.1. 記憶列結合<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul class="simple">
+<li><p>EQUIVALENCE</p></li>
+<li><dl class="simple">
+<dt>COMMON</dt><dd><p>モジュールを利用すれば不要である。COMMONブロックのうち値が一定のものはモジュール変数に書き換えよう。変数の加除を間違える心配がなくなる。初期化サブルーチンもまとめておけるので、何が入るかすぐにわかる。コモンブロックのうち毎ステップ値の変わるような値の一定でないものは、引数で渡すようにすると、どのサブルーチンでどのタイミングで値が変更されるかが明瞭になる。</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>BLOCK DATA</dt><dd><p>モジュールを利用すれば不要である。</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>文字長の不一致</dt><dd><p>文字数の引数の長さを誤ると予期せぬ動作がおこる。サブルーチンで長さをcharacter(len=*) のように宣言すると誤りを防ぐことができる。</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>ENTRY</dt><dd><p>ENTRYは複数のサブルーチンでデータを共有するために用いられてきた。共有されるべき変数をモジュール変数とし、ENTRYで定義される入り口ごとに サブルーチンを分ければENTRY文は不要である。</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h2>4.2. 新機能のうち冗長なもの<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul class="simple">
+<li><dl class="simple">
+<dt>INCLUDE</dt><dd><p>構造の不明確なINCLUDE行の機能よりもuse文の方が同じ効果をうまくもたらす。</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>DO WHILE</dt><dd><p>最適化に困難が生じる。</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="id4">
+<h2>4.3. 冗長な旧機能<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul class="simple">
+<li><dl class="simple">
+<dt>固定形式</dt><dd><p>代わりに自由形式を使用すること。</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>DOUBLE PRECISION</dt><dd><p>倍精度実数型を宣言するときはreal(8)を使用すること。</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>文字長指定 *LEN</dt><dd><p>character(len=文字長)とすること。</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>data 文の行位置</dt><dd><p>data文は実行文の間におくことができるシステムも存在する。しかし、データ初期化は本来は宣言文に属するものであるので、実行文の間に置いてはいけない。</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>文関数</dt><dd><p>文関数は引用仕様が暗黙的であり、デバッグがしずらくなる。また、文関数自体や文関数定義が後続する文関数を引用してはならないなどの制限がある。 内部関数として書いた方がよい。</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>組み込み手続きの個別名</dt><dd><p>特に必要がない限り、総称名を使用すること。</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="id5">
+<h2>4.4. 廃止予定事項<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul class="simple">
+<li><dl class="simple">
+<dt>算術 IF 文</dt><dd><p>「IF (式) 文番号, 文番号, 文番号」の形式で、式の値の正負によってジャンプする文番号が選択されたり「GOTO (文番号, 文番号, ...) 整数式」の形式で、式の値がnならばn番目の文番号にジャンプするという機能があった。
+かわりに、ブロックif文を使用すること。</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>不整構造 DO 構文</dt><dd><p>多重のdo ループを同じ文番号で終えることはできなくなる予定。また、doループをend do文でも continue文でもない単純実行文で終えることはできなくなる予定。代わりにend doを用いること。</p>
+</dd>
+</dl>
+</li>
+<li><p>割り当て型GOTO文およびASSIGN文</p></li>
+<li><p>end if文への分岐</p></li>
+<li><dl class="simple">
+<dt>選択戻り</dt><dd><p>サブルーチンの仮引数として*を列挙し、呼び出し側では*をつけた文番号を引数としてCALLすると、サブルーチン内で RETURN の後に整数型の式 (n とする）を書いた場合にサブルーチンから返るだけでなくn番目の * に対応するの文番号にジャンプする、という機能があった。廃止予定であるし、なにより判りにくい。「FORTRAN77で作ったオブジェクトが Fortran90 でリンクできない」といったトラブルの原因になることもある。
+サブルーチンが異常な状態で終了したことを呼び出し元に伝えたいならば、そのための引数を追加すべきである。</p>
+</dd>
+</dl>
+</li>
+<li><p>PAUSE 文</p></li>
+<li><dl class="simple">
+<dt>H 型編集記述子</dt><dd><p>数字の後にHを書くと、そのあと数値の数だけの文字が文字型</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="id6">
+<h2>4.5. その他<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<ul class="simple">
+<li><dl class="simple">
+<dt>タブ</dt><dd><p>ソースコードの読みやすさと編集上の理由から、タブは禁止する。</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>処理系固有の仕様</dt><dd><p>規格非合致の拡張仕様を用いると汎用性を著しく損ねてしまうので使用しないこと。機種依存部分についてはチェックが困難であるため、著者がどういう環境・コンパイルオプションで動作確認したのかの情報があればよい。</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">目次</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">4. 禁止事項</a><ul>
+<li><a class="reference internal" href="#id2">4.1. 記憶列結合</a></li>
+<li><a class="reference internal" href="#id3">4.2. 新機能のうち冗長なもの</a></li>
+<li><a class="reference internal" href="#id4">4.3. 冗長な旧機能</a></li>
+<li><a class="reference internal" href="#id5">4.4. 廃止予定事項</a></li>
+<li><a class="reference internal" href="#id6">4.5. その他</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="modernFunction.html"
+                        title="前の章へ">3. モダンな機能を生かして</a></p>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/prohibitedMatter.rst.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">クイック検索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="検索" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="modernFunction.html" title="3. モダンな機能を生かして"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Modern Fortran Coding Style Guide  ドキュメント</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, Modern Fortran Local User Group in Japan.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 2.2.0 で生成しました。
+    </div>
+  </body>
+</html>

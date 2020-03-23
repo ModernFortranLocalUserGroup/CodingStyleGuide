@@ -1,0 +1,232 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <title>2. スタイルルール &#8212; Modern Fortran Coding Style Guide  ドキュメント</title>
+    <link rel="stylesheet" href="_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="3. モダンな機能を生かして" href="modernFunction.html" />
+    <link rel="prev" title="1. はじめに" href="aboutThis.html" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head><body>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="modernFunction.html" title="3. モダンな機能を生かして"
+             accesskey="N">次へ</a> |</li>
+        <li class="right" >
+          <a href="aboutThis.html" title="1. はじめに"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Modern Fortran Coding Style Guide  ドキュメント</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="id1">
+<h1>2. スタイルルール<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="id2">
+<h2>2.1. フリーフォーマット（自由形式）<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>7-72桁に文を書かなければならない等の制約がなくなり、それ以外の桁位置に書いた文字が無視されるなどの誤りを防ぐことができる。</p>
+</div>
+<div class="section" id="id3">
+<h2>2.2. １ファイルには同名のプログラム単位１つを格納<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>プログラム単位とは、主プログラム、外部関数、外部サブルーチン、モジュ ール、BLOCKDATA のいずれかである。たとえば、外部サブルーチンSUBはsub.f90に保存されるべきである。
+こうしておけばプログラムを読むときにファイルを探しやすい。また、サブ ルーチンを書き換えた場合に他のプログラム単位をコンパイルしなおすこと がなくなるので、コンパイル時間が短くなる。</p>
+</div>
+<div class="section" id="id4">
+<h2>2.3. 名前<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>いつも主プログラムは program 文ではじめること。また end 文としては &quot;end program name&quot; や &quot;end subroutine name&quot; 等の形を使用すること。</p>
+</div>
+<div class="section" id="id5">
+<h2>2.4. 継続記号<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>継続行を追加する場合の継続記号（&amp;:アンド記号）は、行末（開始行の 終わりの文字として）だけではなく行頭（継続行の最初の文字として）にもつけること。継続行であるということがはっきりと区別できるようになる。</p>
+</div>
+<div class="section" id="id6">
+<h2>2.5. 字下げ（インデンテーション）<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>読みやすさのため、2桁づつの幅で字下げすること。字下げとはプログラム の構造上ひとまとまりとなる文をそのほかの文に比べて2字右側の桁位置から書き始めることである。
+字下げを行う「まとまり」とはプログラム単位（subroutine）、引用使用宣言（interface）、実行部ブロック（do, if など）である。これらの終わり の文はすべて「end」で始まる文なので、「end まで字下げ」と覚えれば簡単である。
+字下げされた範囲の中の注釈行も字下げすること。これによって、行頭の空白でない最初の桁位置を追うだけでプログラムのアルゴリズム構造が見出せるようになる。
+継続行は開始行に対して2字字下げすること。</p>
+</div>
+<div class="section" id="id7">
+<h2>2.6. 空白<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>読みやすさのため、名前と演算子など、字句の間に適切な空白を入れ、同じスタイルを一貫して用いること。英文タイプの句読法に従うのが望ましい。</p>
+<p>演算子の前後に空白を入れる。(例: 1 + 2)
+コンマ、コロン、セミコロンの後に空白を入れる。(例: a, b, c)
+括弧類の内側に入れない。(例: array(index))
+またブロックではない一群の文は前後の文との間に空行を入れて区別すること。
+空白は原則として1個とするが、似たような構成の代入文が連続するときに余分な空白をいれて等号の桁位置をそろえ、類似性を見比べやすくするなどしてもよい。</p>
+</div>
+<div class="section" id="implicit-none">
+<h2>2.7. implicit none<a class="headerlink" href="#implicit-none" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>すべてのプログラム単位の冒頭（use 文があるときはその直後) に implicit none文を書くこと。そしてすべての変数・定数は明示的に宣言すること。これによって、宣言されていない名前を用いるとコンパイルエラーを起こすので、名前のつづり間違えによるバグを防ぐことができる。</p>
+</div>
+<div class="section" id="id8">
+<h2>2.8. １行に複数の文を書かない<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>プログラムがわかりにくくなる。</p>
+</div>
+<div class="section" id="id9">
+<h2>2.9. 意味がわかる名称をつける<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>変数名やサブルーチン名は、その役割に基づいた名前をつけておくとプログラムを読む際にその意味や構造を把握しやすい。</p>
+</div>
+<div class="section" id="id10">
+<h2>2.10. 変数の宣言方法<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>FORTRAN 77 では型宣言文と属性を与えるための文 (SAVE, DATA, DIMENSION, PARAMETER, など) が別であったため、同じ名前の列を何度も書く必要があった。Fortran90では型宣言文で属性をすべて設定できるようになったため、すべての属性を型宣言文で指定すること。たとえば以下の3つのコードはまったく等価である。</p>
+<p>　昔ながらの書き方</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="kt">INTEGER </span><span class="n">N</span>
+<span class="k">DIMENSION </span><span class="n">N</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="k">SAVE </span><span class="n">N</span>
+<span class="k">DATA </span><span class="n">N</span> <span class="o">/</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">224</span>
+</pre></div>
+</div>
+<p>◎推奨する書き方</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="kt">integer</span><span class="p">,</span> <span class="k">save</span><span class="kd">::</span> <span class="n">n</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="o">/</span><span class="mi">400</span><span class="p">,</span> <span class="mi">224</span><span class="o">/</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>×推奨しない書き方</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="kt">integer</span><span class="p">,</span> <span class="k">save</span><span class="p">,</span> <span class="k">dimension</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="kd">::</span> <span class="n">n</span> <span class="o">=</span> <span class="p">(</span><span class="o">/</span><span class="mi">400</span><span class="p">,</span> <span class="mi">224</span><span class="o">/</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>上記例3行目のような、型宣言文のdimension 属性は使わないこと。代わりに2行目のような書き方を用いること。</p>
+</div>
+<div class="section" id="id11">
+<h2>2.11. 引数の入出力特性<a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>識別を容易にするためintent(in), intent(out), intent(inout) をつける。例えば intent(in) がつけられた変数の値を変更する文が存在すると、コンパイル時にエラーが発生し、デバッグを助ける。
+なお、手続のモジュール化または interfaceブロックによって引用仕様を明示することにより、さらにその恩恵を受けることが可能である。</p>
+</div>
+<div class="section" id="id12">
+<h2>2.12. 入出力のフォーマット情報<a class="headerlink" href="#id12" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>文番号を伴ったformat文は禁止する。代わりに入出力文の fmt指定子に記述すること。</p>
+</div>
+<div class="section" id="id13">
+<h2>2.13. 配列表記<a class="headerlink" href="#id13" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>プログラムの行数が少なくなるので、可能であれば使用すること。配列か変数かの区別をつけて読みやすくするため、カッコ内に配列の形状を示すこと。</p>
+<p>　昔ながらの書き方</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">DIMENSION</span><span class="p">(</span><span class="n">N</span><span class="p">)</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span>
+<span class="k">DO </span><span class="mi">300</span> <span class="n">I</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">N</span>
+  <span class="n">X</span><span class="p">(</span><span class="n">I</span><span class="p">)</span> <span class="o">=</span> <span class="n">Y</span><span class="p">(</span><span class="n">I</span><span class="p">)</span>
+<span class="mi">300</span> <span class="k">CONTINUE</span>
+</pre></div>
+</div>
+<p>◎推奨する書き方</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="kt">real</span><span class="kd">::</span> <span class="n">x</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">y</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">n</span><span class="p">)</span> <span class="o">=</span> <span class="n">y</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">n</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>×推奨しない書き方</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span>x(:) = y(:) または x = y
+</pre></div>
+</div>
+<p>並列最適化コンパイラの動作を助け、バグを少なくするため、配列代入文の上下限指定は省略しないほうがよい。</p>
+</div>
+<div class="section" id="id14">
+<h2>2.14. 論理比較<a class="headerlink" href="#id14" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>従来の .GT., .GE., .EQ., .LT., .LE., .NE. の代わりにそれぞれ &gt;, &gt;=, ==, &lt;, &lt;=, /= を使用する。数学表記に近いこの新しい構文の方が意味がわかりやすい。</p>
+</div>
+<div class="section" id="goto">
+<h2>2.15. goto 文<a class="headerlink" href="#goto" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>goto文を使うとプログラムがわかりにくくなることが多い。Fortranに限らず、ほとんどのプログラムはループと条件分岐だけで書くことができ、そうすることが望ましいと考えられている（構造化プログラミング）。
+FORTRAN77では固定長のループしか表現できないため GOTO文を用いる必要があったが、do のあとの繰り返し指定を省略すると無限ループを表し、ループの途中からの脱出は exit文で行えるようになったので、構造化プログラミング理論で用いられるすべてのループが GOTO文なしで書ける。</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">目次</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">2. スタイルルール</a><ul>
+<li><a class="reference internal" href="#id2">2.1. フリーフォーマット（自由形式）</a></li>
+<li><a class="reference internal" href="#id3">2.2. １ファイルには同名のプログラム単位１つを格納</a></li>
+<li><a class="reference internal" href="#id4">2.3. 名前</a></li>
+<li><a class="reference internal" href="#id5">2.4. 継続記号</a></li>
+<li><a class="reference internal" href="#id6">2.5. 字下げ（インデンテーション）</a></li>
+<li><a class="reference internal" href="#id7">2.6. 空白</a></li>
+<li><a class="reference internal" href="#implicit-none">2.7. implicit none</a></li>
+<li><a class="reference internal" href="#id8">2.8. １行に複数の文を書かない</a></li>
+<li><a class="reference internal" href="#id9">2.9. 意味がわかる名称をつける</a></li>
+<li><a class="reference internal" href="#id10">2.10. 変数の宣言方法</a></li>
+<li><a class="reference internal" href="#id11">2.11. 引数の入出力特性</a></li>
+<li><a class="reference internal" href="#id12">2.12. 入出力のフォーマット情報</a></li>
+<li><a class="reference internal" href="#id13">2.13. 配列表記</a></li>
+<li><a class="reference internal" href="#id14">2.14. 論理比較</a></li>
+<li><a class="reference internal" href="#goto">2.15. goto 文</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="aboutThis.html"
+                        title="前の章へ">1. はじめに</a></p>
+  <h4>次のトピックへ</h4>
+  <p class="topless"><a href="modernFunction.html"
+                        title="次の章へ">3. モダンな機能を生かして</a></p>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/styleRule.rst.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">クイック検索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="検索" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="modernFunction.html" title="3. モダンな機能を生かして"
+             >次へ</a> |</li>
+        <li class="right" >
+          <a href="aboutThis.html" title="1. はじめに"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Modern Fortran Coding Style Guide  ドキュメント</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, Modern Fortran Local User Group in Japan.
+      このドキュメントは <a href="http://sphinx-doc.org/">Sphinx</a> 2.2.0 で生成しました。
+    </div>
+  </body>
+</html>
