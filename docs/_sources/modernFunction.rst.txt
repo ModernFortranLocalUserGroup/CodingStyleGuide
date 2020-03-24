@@ -26,7 +26,7 @@
 
 * 定数参照型モジュールの例１　（prm_resol.F90）
 
-.. code-block:: fortran
+.. code-block::
 
   module prm_resol
   !
@@ -40,7 +40,7 @@
 
 * 定数参照型モジュールの例２　（prm_phconst.F90）
 
-.. code-block:: fortran
+.. code-block::
 
   module prm_phconst
   !
@@ -55,7 +55,7 @@
 
 * 上記定数参照型モジュールを参照等をするメインプログラムの例（main.F90）
 
-.. code-block:: fortran
+.. code-block::
 
   program main
   !
@@ -89,7 +89,7 @@
 
 * 変数参照型モジュールの例　（com_tetens.F90）
 
-.. code-block:: fortran
+.. code-block::
 
   module com_tetens
     implicit none
@@ -105,7 +105,7 @@
 
 * 上記変数参照型モジュールを参照等をするメインプログラムの例　（main.F90）
 
-.. code-block:: fortran
+.. code-block::
 
   program main
     use com_tetens,only: &
@@ -130,7 +130,7 @@
 
 * パッケージ型モジュールの例　（package1.F90）
 
-.. code-block:: fortran
+.. code-block::
 
   module package1
     use prm_resol, only : imax,jmax
@@ -180,7 +180,7 @@
 
 * 動的割り付けサブルーチンの例　（sub.F90）
 
-.. code-block:: fortran
+.. code-block::
 
   subroutine sub( imax, jmax, a )
     implicit none

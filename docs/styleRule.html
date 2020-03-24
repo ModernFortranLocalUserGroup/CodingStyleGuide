@@ -98,18 +98,18 @@
 <h2>2.10. 変数の宣言方法<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>FORTRAN 77 では型宣言文と属性を与えるための文 (SAVE, DATA, DIMENSION, PARAMETER, など) が別であったため、同じ名前の列を何度も書く必要があった。Fortran90では型宣言文で属性をすべて設定できるようになったため、すべての属性を型宣言文で指定すること。たとえば以下の3つのコードはまったく等価である。</p>
 <p>　昔ながらの書き方</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="kt">INTEGER </span><span class="n">N</span>
-<span class="k">DIMENSION </span><span class="n">N</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-<span class="k">SAVE </span><span class="n">N</span>
-<span class="k">DATA </span><span class="n">N</span> <span class="o">/</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">224</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">INTEGER</span> <span class="n">N</span>
+<span class="n">DIMENSION</span> <span class="n">N</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">SAVE</span> <span class="n">N</span>
+<span class="n">DATA</span> <span class="n">N</span> <span class="o">/</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">224</span>
 </pre></div>
 </div>
 <p>◎推奨する書き方</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="kt">integer</span><span class="p">,</span> <span class="k">save</span><span class="kd">::</span> <span class="n">n</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="o">/</span><span class="mi">400</span><span class="p">,</span> <span class="mi">224</span><span class="o">/</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">integer</span><span class="p">,</span> <span class="n">save</span><span class="p">::</span> <span class="n">n</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="o">/</span><span class="mi">400</span><span class="p">,</span> <span class="mi">224</span><span class="o">/</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>×推奨しない書き方</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="kt">integer</span><span class="p">,</span> <span class="k">save</span><span class="p">,</span> <span class="k">dimension</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="kd">::</span> <span class="n">n</span> <span class="o">=</span> <span class="p">(</span><span class="o">/</span><span class="mi">400</span><span class="p">,</span> <span class="mi">224</span><span class="o">/</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">integer</span><span class="p">,</span> <span class="n">save</span><span class="p">,</span> <span class="n">dimension</span><span class="p">(</span><span class="mi">2</span><span class="p">)::</span> <span class="n">n</span> <span class="o">=</span> <span class="p">(</span><span class="o">/</span><span class="mi">400</span><span class="p">,</span> <span class="mi">224</span><span class="o">/</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>上記例3行目のような、型宣言文のdimension属性は使わないこと。代わりに2行目のような書き方を用いること。</p>
@@ -130,19 +130,19 @@ intent(out)は付けない方がいい。</p>
 <h2>2.13. 配列表記<a class="headerlink" href="#id13" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>プログラムの行数が少なくなるので、可能であれば使用すること。配列か変数かの区別をつけて読みやすくするため、カッコ内に配列の形状を示すこと。</p>
 <p>　昔ながらの書き方</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">DIMENSION</span><span class="p">(</span><span class="n">N</span><span class="p">)</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span>
-<span class="k">DO </span><span class="mi">300</span> <span class="n">I</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">N</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DIMENSION</span><span class="p">(</span><span class="n">N</span><span class="p">)</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span>
+<span class="n">DO</span> <span class="mi">300</span> <span class="n">I</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">N</span>
   <span class="n">X</span><span class="p">(</span><span class="n">I</span><span class="p">)</span> <span class="o">=</span> <span class="n">Y</span><span class="p">(</span><span class="n">I</span><span class="p">)</span>
-<span class="mi">300</span> <span class="k">CONTINUE</span>
+<span class="mi">300</span> <span class="n">CONTINUE</span>
 </pre></div>
 </div>
 <p>◎推奨する書き方</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="kt">real</span><span class="kd">::</span> <span class="n">x</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">y</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">real</span><span class="p">::</span> <span class="n">x</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">y</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
 <span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">n</span><span class="p">)</span> <span class="o">=</span> <span class="n">y</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">n</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>×推奨しない書き方</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span>x(:) = y(:) または x = y
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="p">(:)</span> <span class="o">=</span> <span class="n">y</span><span class="p">(:)</span> <span class="n">または</span> <span class="n">x</span> <span class="o">=</span> <span class="n">y</span>
 </pre></div>
 </div>
 <p>並列最適化コンパイラの動作を助け、バグを少なくするため、配列代入文の上下限指定は省略しないほうがよい。</p>

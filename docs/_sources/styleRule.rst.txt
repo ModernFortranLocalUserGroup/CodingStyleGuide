@@ -7,7 +7,7 @@
 7-72桁に文を書かなければならない等の制約がなくなり、それ以外の桁位置に書いた文字が無視されるなどの誤りを防ぐことができる。
 
 １ファイルには同名のプログラム単位１つを格納はしない
-==================================================
+====================================================================================================
 
 ソースコードが多くなるため1ファイル1プログラムはやらない。
 
@@ -62,7 +62,7 @@ FORTRAN 77 では型宣言文と属性を与えるための文 (SAVE, DATA, DIME
 
 　昔ながらの書き方	
 
-.. code-block:: fortran
+.. code-block::
 
       INTEGER N
       DIMENSION N(2)
@@ -71,13 +71,13 @@ FORTRAN 77 では型宣言文と属性を与えるための文 (SAVE, DATA, DIME
 
 ◎推奨する書き方	
 
-.. code-block:: fortran
+.. code-block::
 
       integer, save:: n(2) = (/400, 224/)
 
 ×推奨しない書き方	
 
-.. code-block:: fortran
+.. code-block::
 
       integer, save, dimension(2):: n = (/400, 224/)
 
@@ -107,7 +107,7 @@ intent(out)は付けない方がいい。
 
 　昔ながらの書き方	
 
-.. code-block:: fortran
+.. code-block::
 
       DIMENSION(N) X, Y
       DO 300 I = 1, N
@@ -116,14 +116,14 @@ intent(out)は付けない方がいい。
 
 ◎推奨する書き方	
 
-.. code-block:: fortran
+.. code-block::
 
       real:: x(n), y(n)
       x(1:n) = y(1:n)
 
 ×推奨しない書き方	
 
-.. code-block:: fortran
+.. code-block::
 
       x(:) = y(:) または x = y
 
