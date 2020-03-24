@@ -69,7 +69,7 @@
 <ul class="simple">
 <li><p>定数参照型モジュールの例１　（prm_resol.F90）</p></li>
 </ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>module prm_resol
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span>module prm_resol
 !
 ! 配列の大きさ(解像度)等を表す変数を設定
 !
@@ -83,7 +83,7 @@ end module prm_resol
 <ul class="simple">
 <li><p>定数参照型モジュールの例２　（prm_phconst.F90）</p></li>
 </ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>module prm_phconst
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span>module prm_phconst
 !
 ! 物理定数を表す変数を設定する
 !
@@ -98,26 +98,26 @@ end module prm_phconst
 <ul class="simple">
 <li><p>上記定数参照型モジュールを参照等をするメインプログラムの例（main.F90）</p></li>
 </ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>program main
-!
-!  温度・高度データを標準入力して、エネルギーを標準出力する
-!
-  use prm_resol  , only : imax           ! 使うものだけをあげよう
-  use prm_phconst, only : cp , grav
-  implicit none
-!
-  real(8) :: energy     (imax)
-  real(8) :: height     (imax)
-  real(8) :: tmperature (imax)
-  integer :: i
-!
-  read (5,*) tmperature
-  read (5,*) height
-  do i=1,imax
-    energy(i) = cp * tmperature(i) + grav * height(i)
-  enddo
-  write(6,*) energy
-end program main
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">main</span>
+<span class="c">!</span>
+<span class="c">!  温度・高度データを標準入力して、エネルギーを標準出力する</span>
+<span class="c">!</span>
+  <span class="k">use </span><span class="n">prm_resol</span>  <span class="p">,</span> <span class="n">only</span> <span class="p">:</span> <span class="n">imax</span>           <span class="c">! 使うものだけをあげよう</span>
+  <span class="k">use </span><span class="n">prm_phconst</span><span class="p">,</span> <span class="n">only</span> <span class="p">:</span> <span class="n">cp</span> <span class="p">,</span> <span class="n">grav</span>
+  <span class="k">implicit none</span>
+<span class="c">!</span>
+  <span class="kt">real</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span> <span class="kd">::</span> <span class="n">energy</span>     <span class="p">(</span><span class="n">imax</span><span class="p">)</span>
+  <span class="kt">real</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span> <span class="kd">::</span> <span class="n">height</span>     <span class="p">(</span><span class="n">imax</span><span class="p">)</span>
+  <span class="kt">real</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span> <span class="kd">::</span> <span class="n">tmperature</span> <span class="p">(</span><span class="n">imax</span><span class="p">)</span>
+  <span class="kt">integer</span> <span class="kd">::</span> <span class="n">i</span>
+<span class="c">!</span>
+  <span class="k">read</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="n">tmperature</span>
+  <span class="k">read</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="n">height</span>
+  <span class="k">do </span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">imax</span>
+    <span class="n">energy</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="n">cp</span> <span class="o">*</span> <span class="n">tmperature</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">+</span> <span class="n">grav</span> <span class="o">*</span> <span class="n">height</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+  <span class="n">enddo</span>
+  <span class="k">write</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="n">energy</span>
+<span class="k">end program </span><span class="n">main</span>
 </pre></div>
 </div>
 <p>　定数参照型モジュール内の定数の値は、コンパイル時に読み込まれるので、コンパイラが最適化を行いやすくなる。実行時に値を変更することは、もちろんできない。</p>
@@ -129,7 +129,7 @@ end program main
 <ul class="simple">
 <li><p>変数参照型モジュールの例　（com_tetens.F90）</p></li>
 </ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>module com_tetens
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span>module com_tetens
   implicit none
   real(8), save :: table(25000)          ! 共有変数
 !
@@ -145,7 +145,7 @@ end module com_tetens
 <ul class="simple">
 <li><p>上記変数参照型モジュールを参照等をするメインプログラムの例　（main.F90）</p></li>
 </ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>program main
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span>program main
   use com_tetens,only: &amp;
   &amp; com_tetens__ini,  &amp;                 ! サブルーチンcom_tetens__iniを使用。
   &amp; table                               ! 変数tableを使用。
@@ -166,7 +166,7 @@ end program main
 <ul class="simple">
 <li><p>パッケージ型モジュールの例　（package1.F90）</p></li>
 </ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>module package1
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span>module package1
   use prm_resol, only : imax,jmax
   implicit none
   private                                ! private属性をdefaultに
@@ -212,7 +212,7 @@ end module package1
 <ul class="simple">
 <li><p>動的割り付けサブルーチンの例　（sub.F90）</p></li>
 </ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>subroutine sub( imax, jmax, a )
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span>subroutine sub( imax, jmax, a )
   implicit none
   integer, intent(in)    :: imax
   integer, intent(in)    :: jmax

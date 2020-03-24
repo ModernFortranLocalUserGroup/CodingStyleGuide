@@ -62,7 +62,7 @@ FORTRAN 77 では型宣言文と属性を与えるための文 (SAVE, DATA, DIME
 
 　昔ながらの書き方	
 
-.. code-block::
+.. code-block:: fortran
 
       INTEGER N
       DIMENSION N(2)
@@ -71,13 +71,13 @@ FORTRAN 77 では型宣言文と属性を与えるための文 (SAVE, DATA, DIME
 
 ◎推奨する書き方	
 
-.. code-block::
+.. code-block:: fortran
 
       integer, save:: n(2) = (/400, 224/)
 
 ×推奨しない書き方	
 
-.. code-block::
+.. code-block:: fortran
 
       integer, save, dimension(2):: n = (/400, 224/)
 
@@ -107,7 +107,7 @@ intent(out)は付けない方がいい。
 
 　昔ながらの書き方	
 
-.. code-block::
+.. code-block:: fortran
 
       DIMENSION(N) X, Y
       DO 300 I = 1, N
@@ -116,14 +116,14 @@ intent(out)は付けない方がいい。
 
 ◎推奨する書き方	
 
-.. code-block::
+.. code-block:: fortran
 
       real:: x(n), y(n)
       x(1:n) = y(1:n)
 
 ×推奨しない書き方	
 
-.. code-block::
+.. code-block:: fortran
 
       x(:) = y(:) または x = y
 
