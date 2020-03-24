@@ -8,11 +8,6 @@ Welcome to Modern Fortran Coding Style Guide's documentation!
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
-
-.. toctree::
-   :maxdepth: 2
-   :caption: OverView
    :numbered:
 
    aboutThis
